@@ -15,13 +15,17 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+      - ls 
+      - sudo systemctl enable docker.service
+      - sudo systemctl start docker.service
+      - sudo systemctl status docker.service
+      - docker build -t 041042815388.dkr.ecr.ap-south-1.amazonaws.com/aws-ecrcli-nginx:test .
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push 041042815388.dkr.ecr.ap-south-1.amazonaws.com/aws-ecrcli-nginx:test
       - echo Writing image definitions file...
-      - printf '[{"name":"ecs-cicd-nginx","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"ecs-cicd-nginx","imageUri":"%s"}]' 041042815388.dkr.ecr.ap-south-1.amazonaws.com/aws-ecrcli-nginx:test > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json      
