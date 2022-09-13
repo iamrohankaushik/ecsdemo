@@ -16,18 +16,17 @@ phases:
     commands:
       - echo Docker build and tagging started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+#       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
       - echo Docker build and tagging completed on `date`
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images... 
-      - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Update the REPOSITORY_URI:IMAGE_TAG in task definition...
       - echo Writing image definitions file...
-      - printf '[{"name":"rummy-service-2","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json   # Define "name" : "Container Name"
+      - printf '[{"name":"ecsdemo","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json   # Define "name" : "Container Name"
       - cat imagedefinitions.json
 artifacts:
     files:
