@@ -16,9 +16,9 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - ls 
-      - sudo systemctl enable docker.service
-      - sudo systemctl start docker.service
-      - sudo systemctl status docker.service
+#       - sudo systemctl enable docker.service
+#       - sudo systemctl start docker.service
+#       - sudo systemctl status docker.service
       - docker build -t 041042815388.dkr.ecr.ap-south-1.amazonaws.com/aws-ecrcli-nginx:test .
   post_build:
     commands:
