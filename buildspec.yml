@@ -26,6 +26,6 @@ phases:
       - echo Pushing the Docker images...
       - docker push 041042815388.dkr.ecr.ap-south-1.amazonaws.com/aws-ecrcli-nginx:test
       - echo Writing image definitions file...
-      - printf '[{"name":"ecs-cicd-nginx","imageUri":"%s"}]' 041042815388.dkr.ecr.ap-south-1.amazonaws.com/aws-ecrcli-nginx:test > imagedefinitions.json
+      - printf '[{"name":"nginx","imageUri":"%s"}]' 041042815388.dkr.ecr.ap-south-1.amazonaws.com/aws-ecrcli-nginx:test > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json      
